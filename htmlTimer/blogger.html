@@ -17,6 +17,7 @@
 <b:section id='fixelements' showaddelement='no' />
 
 <body>
+    <h1>Go to console for full experience</h1>
     <input type="number" maxlength="3" name="value" id='hours' placeholder="Hours" />
     <input type="number" maxlength="3" name="value" id='minutes' placeholder="Minutes" />
     <input type="number" maxlength="3" name="value" id='seconds' placeholder="Seconds" />
@@ -37,8 +38,11 @@
                 let segundos = seconds + minutes * 60 + hours * 3600;
 
                 setTimeout(function () {
-                    console.log("Seconds: ", segundos);
-                    if (--segundos == 0) {
+                    let secundos = segundos;
+
+                    console.log(`${secundos / 3600 >> 0}:${(secundos % 3600) / 60 >> 0}:${secundos %= 60}`);
+
+                    if (segundos-- == 0) {
                         beep();
                         return;
                     }
@@ -49,6 +53,7 @@
 
             function beep() {
                 snd.play();
+                console.log("THANKS FOR USING :D")
                 console.log("FIN")
             }
 

@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <b:skin>
+        <![CDATA[
+	]]>
+    </b:skin>
+
+    <title>Toimmer</title>
+
+</head>
+<b:section id='fixelements' showaddelement='no' />
+
+<body>
+    <input type="number" maxlength="3" name="value" id='hours' placeholder="Hours" />
+    <input type="number" maxlength="3" name="value" id='minutes' placeholder="Minutes" />
+    <input type="number" maxlength="3" name="value" id='seconds' placeholder="Seconds" />
+    <input type="button" value="Start" onclick="timer()" />
+
+    <p id="error"></p>
+    <p id="detspace"></p>
+
+    <script>
+        function timer() {
+            var hours = (parseInt(document.getElementById('hours').value) || 0);
+            var minutes = (parseInt(document.getElementById('minutes').value) || 0);
+            var seconds = (parseInt(document.getElementById('seconds').value) || 0);
+            var snd = new Audio("https://docs.google.com/uc?export=download&id=1ettkn-j79KhfddeGRafzL4E6DTqG6E0A");
+
+
+            function actualTimer(seconds = 0, minutes = 0, hours = 0) {
+                let soundTimmeout = 0;
+                let segundos = seconds + minutes * 60 + hours * 3600;
+
+                setTimeout(function () {
+                    console.log("Seconds: ", segundos);
+                    if (--segundos == 0) {
+                        beep();
+                        return;
+                    }
+                    actualTimer(segundos);
+                }, 1000);
+
+            }
+
+            function beep() {
+                snd.play();
+
+                console.log("FIN")
+
+            }
+
+            if (seconds < 0 || minutes < 0 || hours < 0) {
+                alert("Valores inseridos invalidos");
+            } else {
+                actualTimer(seconds, minutes, hours);
+            }
+        }
+    </script>
+
+</body>
+
+</html>
